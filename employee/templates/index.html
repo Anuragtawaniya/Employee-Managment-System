@@ -1,0 +1,956 @@
+{% load static %}
+
+{% load second_to_hm %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+
+
+   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'admin.css' %}" />
+
+
+    <title>Home</title>
+  </head>
+  <body>
+
+   
+    <nav class="flex">
+      <div class="left-nav flex">
+        <i class="fa-solid fa-bars"></i>
+        <div class="logo">
+          <img src="{% static 'logo.png' %}" alt="" />
+        </div>
+        <h3 class="title">Management Live</h3>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <img src="{% static './assets/home.svg' %}" alt=""><a href="">Home</a>
+          </li>
+          <li> <img src="{% static './assets/Vector (13).svg' %}" alt=""> <a href="">Admissions</a></li>
+          <li>
+            <img src="{% static './assets/user-profile.svg' %}" width="20" alt="">
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="main-container flex">
+      <aside>
+        <a href=""><img src="{% static './assets/Vector-11.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector-12.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector-1.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector-2.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector-3.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector-4.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector-5.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector-7.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector-8.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector-9.svg' %}" alt="" /></a>
+        <a href=""><img src="{% static './assets/Vector-10.svg' %}" alt="" /></a>
+      </aside>
+      <div class="keymetrics-main">
+        <div class="key-dev key">
+          <h1>Key Metrics</h1>
+        </div>
+        <div class="key-div flex" id="white-key">
+          <div>
+            <p>Queue to Registration</p>
+            <h3>Registration Time</h3>
+          </div>
+          <div>
+            <img src="{% static './assets/clock.svg' %}" alt="">
+            <h4 class="red-heading red-title">
+         
+              {% seconds key_metrics.registration.time %}
+          
+            </h4>
+          </div>
+        </div>
+
+        <!-- 2nd  -->
+        <div class="key-div flex">
+          <div>
+            <p class="grey-title">Registration to Triage</p>
+            <h3 class="black-title">Time to Triage</h3>
+          </div>
+          <div>
+            <img src="{% static './assets/clock.svg' %}" alt="">
+            <h4 class="red-heading green-title">{% seconds key_metrics.triage_done.time%}</h4>
+          </div>
+        </div>
+
+        <!-- 3rd -->
+        <div class="key-div flex">
+          <div>
+            <p>Triage to Consult</p>
+            <h3>Time to Consult</h3>
+          </div>
+          <div>
+            <img src="{% static './assets/clock.svg' %}" alt="">
+            <h4 class="red-heading green-title">
+              {% seconds key_metrics.cons_done.time %}
+            </h4>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="key-div flex">
+          <div>
+            <p>Triage End to Discharge</p>
+            <h3>In Zone Time</h3>
+          </div>
+          <div>
+            <img src="{% static './assets/clock.svg' %}" alt="">
+            <h4 class="red-heading red-title">
+              {% seconds key_metrics.in_zone.time%}
+            </h4>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="key-div flex">
+          <div>
+            <p>Consultation to Discharge</p>
+            <h3>Treatment Time</h3>
+          </div>
+          <div>
+            <img src="{% static './assets/clock.svg' %}" alt="">
+            <h4 class="red-heading red-title">
+              {% seconds key_metrics.treatment.time %}
+            </h4>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="key-div hidden flex">
+          <div>
+            <p>Lab Order Request to Processing</p>
+            <h3>Lab Processing Time</h3>
+          </div>
+          <div>
+            <img src="{% static './assets/clock.svg' %}" alt="">
+            <h4 class="red-heading red-title">02:34</h4>
+          </div>
+        </div>
+        <!-- 7 -->
+        <div class="key-div hidden flex">
+          <div>
+            <p>Radiology Order Request to Processing</p>
+            <h3>Radiology Processing Time</h3>
+          </div>
+          <div>
+            <img src="{% static './assets/clock.svg' %}" alt="">
+            <h4 class="red-heading red-title">02:34</h4>
+          </div>
+        </div>
+        <!-- 8 -->
+        <div class="key-div flex">
+          <div>
+            <p>UCC Discharge to IP Bed Allotment</p>
+          <div class="flex ip">
+            <h3>IP Transfers</h3>
+            <div class="flex ip-bg">
+              <img src="{% static './assets/clock.svg' %}" alt=""><h2>18</h2>
+            </div>
+          </div>
+          </div>
+          <div>
+            <img src="{% static './assets/clock.svg' %}" alt="">
+            <h4 class="red-heading green-title">
+              {% seconds key_metrics.ip_transfers.completed.time %}
+      
+            </h4>
+          </div>
+        </div>
+        <!-- 9 -->
+        <div class="key-div total-detail flex">
+          <div class="total-visit">
+            <h4>Total Visits</h4>
+            <br />
+            <h3>{{key_metrics.total.count}}</h3>
+          </div>
+          <div class="total-count">
+            <h4>Visit Time</h4>
+            <p>Registration to Discharge</p>
+            <h3>
+              {% seconds completed.avg_act_tm  %}
+            </h3>
+          </div>
+        </div>
+
+        <!-- employee details -->
+       <div class="flex">
+        <div class="employee">
+          <div>
+          <div class="emp-head">
+            <img src="{% static './assets/Vector (1).svg' %}" />
+            <p class="emp-detail-title">Insurance</p>
+          </div>
+            <div class="flex emp-detail">
+              <p class="purple">
+                {{completed.Payor.Insurance.count}}
+              </p>
+              <div>
+                <img src="{% static './assets/clock.svg' %}" alt="">
+                <h3 class="green-title">
+                  {% seconds completed.Payor.Insurance.time %}
+                </h3>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="employee">
+          <div>
+          <div class="emp-head">
+            <img src="{% static './assets/Vector (1).svg' %}" />
+            <p class="emp-detail-title dark-blue">Self Pay</p>
+          </div>
+            <div class="flex emp-detail">
+              <p>{{completed.Payor.Self_Pay.count}}</p>
+              <div>
+                <img src="{% static './assets/clock.svg' %}" alt="">
+                <h3 class="green-title">
+                  {% seconds completed.Payor.Self_Pay.time %}
+                </h3>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+       </div>
+       <div class="flex">
+        <div class="employee">
+          <div>
+          <div class="emp-head">
+            <img src="{% static './assets/international.svg' %}" />
+            <p class="emp-detail-title">International</p>
+          </div>
+            <div class="flex emp-detail">
+              <p>{{completed.Residency.International.count}}</p>
+              <div>
+                <img src="{% static './assets/clock.svg' %}" alt="">
+                <h3 class="green-title">
+                  {% seconds completed.Residency.International.time %}
+                </h3>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="employee">
+          <div>
+          <div class="emp-head">
+            <img src="{% static './assets/local.svg' %}" />
+            <p class="emp-detail-title">Local</p>
+          </div>
+            <div class="flex emp-detail">
+              <p>{% seconds completed.Residency.Local.count %}</p>
+              <div>
+                <img src="{% static './assets/clock.svg' %}" alt="">
+                <h3 class="green-title">
+                  {% seconds completed.Residency.Local.time %}
+                </h3>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+       </div>
+      </div>
+<main>
+      <div class="second-section flex">
+        <div class="zone-statics">
+          <div class="zone blue">
+            <h4 style="color: #fff;">Zone Statistics</h4>
+          </div>
+          <div class="zone flex">
+            <div>
+              <img src="{% static './assets/Vector (5).svg' %}" alt="" />
+            </div>
+          <div>
+            <h4>Total Visits</h4>
+          </div>
+          </div>
+
+          <div class="zone flex">
+            <div>
+              <img src="{% static './assets/Vector (6).svg' %}" alt="" />
+            </div>
+         <div>
+          <h4>Active</h4>
+         </div>
+          </div>
+          <div class="zone flex">
+            <div>
+              <img src="{% static './assets/Vector (7).svg' %}" alt="" />
+            </div>
+          <div>  <h4>Discharged</h4></div>
+          </div>
+          <div class="zone flex">
+            <div>
+              <img src="{% static './assets/Vector (8).svg' %}" alt="" />
+            </div>
+           <div>
+            <h4>Average Triage Time</h4>
+           </div>
+          </div>
+          <div class="zone flex">
+            <div>
+              <img src="{% static './assets/Vector (9).svg' %}" alt="" />
+            </div>
+           <div> <h4>Average Hold time</h4></div>
+          </div>
+          <div class="zone flex">
+            <div>
+              <img src="{% static './assets/Vector (10).svg' %}" alt="" />
+            </div>
+           <div>
+            <h4>Average Visit Time</h4>
+           </div>
+          </div>
+        </div>
+
+        
+        
+        <div class="second-section-green">
+          <h4 class="green bg">Green Zone</h4>
+          <h4 class="second-title">{{zonestats.green.total_visits_count}}</h4>
+          <h4 class="second-title">{{zonestats.green.active_count}}</h4>
+          <h4 class="second-title">{{zonestats.green.discharge_count}}</h4>
+          <h4 class="second-title">
+          <p class="second-section-bg">  <img src="{% static './assets/clock.svg' %}" alt="" /><span class="green-title">
+            {% seconds zonestats.green.avg_triage_tm  %}
+          </span></p>
+          </h4>
+          <h4 class="second-title">
+            <p class="second-section-bg">  <img src="{% static './assets/clock.svg' %}" alt="" /><span class="red-title">
+              {% seconds zonestats.green.avg_triage_tm  %}
+            </span></p>
+          </h4>
+          <h4 class="second-title">
+            <p class="second-section-bg">  <img src="{% static './assets/clock.svg' %}" alt="" /><span class="green-title">
+                  {% seconds zonestats.green.avg_triage_tm  %}
+            </span></p>
+          </h4>
+    
+        </div>
+        <div class="second-section-green">
+          <h4 class="yellow bg">Yellow Zone</h4>
+          <h4 class="second-title yellow-bg">{{zonestats.yellow.total_visits_count}}</h4>
+          <h4 class="second-title yellow-bg">{{zonestats.yellow.active_count}}</h4>
+          <h4 class="second-title yellow-bg">{{zonestats.yellow.discharge_count}}</h4>
+          <h4 class="second-title yellow-bg">
+            <p class="second-section-bg">  <img src="{% static './assets/clock.svg' %}" alt="" /><span class="red-title">
+              {% seconds zonestats.yellow.avg_triage_tm  %}
+            </span></p>
+            </h4>
+            <h4 class="second-title yellow-bg">
+              <p class="second-section-bg">  <img src="{% static './assets/clock.svg' %}" alt="" /><span class="red-title">
+                {% seconds zonestats.yellow.avg_cons_tm  %}
+              </span></p>
+            </h4>
+            <h4 class="second-title yellow-bg">
+              <p class="second-section-bg">  <img src="{% static './assets/clock.svg' %}" alt="" /><span class="green-title">
+                {% seconds zonestats.yellow.avg_cons_tm  %}
+              </span></p>
+            </h4>
+
+        </div>
+        <div class="second-section-green">
+          <h4 class="red bg">Red Zone</h4>
+          <h4 class="second-title red-bg">{{zonestats.red.total_visits_count}}</h4>
+          <h4 class="second-title red-bg">{{zonestats.red.active_count}}</h4>
+          <h4 class="second-title red-bg">{{zonestats.red.discharge_count}}</h4>
+          <h4 class="second-title red-bg">
+            <p class="second-section-bg">  <img src="{% static './assets/clock.svg' %}" alt="" /><span class="red-title">
+              {% seconds zonestats.red.avg_triage_tm  %}
+            </span></p>
+            </h4>
+            <h4 class="second-title red-bg">
+              <p class="second-section-bg">  <img src="{% static './assets/clock.svg' %}" alt="" /><span class="green-title">
+                {% seconds zonestats.red.avg_visit_tm  %}
+              </span></p>
+            </h4>
+            <h4 class="second-title red-bg">
+              <p class="second-section-bg">  <img src="{% static './assets/clock.svg' %}" alt="" /><span class="green-title">
+                {% seconds zonestats.red.avg_visit_tm  %}
+              </span></p>
+            </h4>
+  
+        </div>
+
+
+
+
+        <div class="second-section-green" id="chart-interval">
+          <h4>Traige By <span class="red-title">Interval</span></h4>
+        </div>
+      </div>
+      <!-- here is second chart section -->
+    <div class="charts flex">
+        <div class="second-section-green" id="chart-zone">
+            <h4>Triage by  <span class="red-title">Zone</span></h4>
+          </div>
+          <div class="second-section-green" id="chart-pati-interval">
+            <h4>Traige By <span class="red-title">Interval</span></h4>
+          </div>
+          <div class="second-section-green" id="chart-doctor">
+            <h4>Patients By <span class="red-title">Doctor</span></h4>
+          </div>
+    </div>
+<div class="search-section">
+ <div class="status flex">
+ <div class="status-img">
+    <h4>Current</h4>
+ <h2>Waiting Status</h2>
+ <img src="{% static './assets/Vector (11).svg' %}" />
+ </div>
+ <div class="status-details">
+ 
+    <div class="status-card flex">
+ <img src="{% static './assets/Vector (12).svg' %}" alt="" /><h4 class="status-title"><span>For</span> Triage</h4>
+    </div>
+ <div class="status-inner flex">
+    <div>
+        <img src="{% static './assets/user.svg' %}" alt="">
+        <h1>{{inprogress.pdTriage.count}}</h1>
+    </div>
+    <div>
+        <img src="{% static './assets/clock.svg' %}" alt="">
+        <h2>02:34</h2>
+    </div>
+    
+ </div>
+
+ <div class="status-card purple-bg flex">
+    <img src="{% static './assets/user.svg' %}" alt="" /><h4 class="status-title"><span>For</span> Consulation</h4>
+       </div>
+    <div class="status-inner flex">
+       <div>
+           <img src="{% static './assets/user.svg' %}" alt="">
+           <h1>{{inprogress.pdConsultation.count}}</h1>
+       </div>
+       <div>
+           <img src="{% static './assets/clock.svg' %}" alt="">
+           <h2 class="green-title">00:34</h2>
+       </div>
+       
+    </div>
+
+
+</div>
+<div class="search">
+ <div class="search-bar">
+ <div class="search-heading flex">
+ <div>
+    <img src="{% static './assets/user.svg' %}" alt="search" /> <h1>Doctor Statistics</h1>
+ </div>
+ <input type="text" id="search" placeholder="Search here">
+ </div>
+ <table id="myTable" class="table table-striped" >  
+  <thead>  
+    <tr>  
+      <th>Doctor</th>
+      <th>Patients</th>
+      <th>Time</th>
+    </tr>  
+  </thead>  
+  <tbody>  
+    {% for v in docstats %}
+    <tr>
+       <td>{{v.doc_name}}</td>
+       <td class="patients-count">{{v.count}}</td>
+       <td> <img src="{% static './assets/clock.svg' %}" alt="">
+        <h2 class="green-title">00:34</h2></td>
+       </tr>
+       {% endfor %} 
+ 
+  </tbody>  
+</table>  
+
+
+ </div>
+ </div>
+ 
+ </div>
+ 
+ </div>
+</main>
+</div>
+      
+</div>
+    
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+
+<script>
+  $(document).ready(function(){
+      $('#myTable').dataTable({
+        "pageLength": 4,
+        "lengthChange": false,
+        "bInfo":false,
+        language: {
+ oPaginate: {
+   sNext: '<i class="fa-sharp fa-solid fa-chevron-right"></i>',
+   sPrevious: '<i class="fa-sharp fa-solid fa-chevron-left"></i>',
+   sFirst: '<i class="fa fa-step-backward"></i>',
+   sLast: '<i class="fa fa-step-forward"></i>'
+   }
+   }  
+      });
+  });
+ 
+  </script>
+
+<script>
+$('#search').keyup(function() {
+    var table = $('#myTable').DataTable();
+    table.search($(this).val()).draw();
+});
+
+</script>
+    <script>
+function timeConverter(seconds){
+  var time = seconds;
+  var hh = Math.floor(time / 60 /60)
+  var mm = Math.floor(time / 60) - (hh * 60);
+  var ss = time % 60;
+  var convertedTime = hh.toString().padStart(2,'0') + ':' + mm.toString().padStart(2,'0');
+  return convertedTime;
+}
+console.log(timeConverter(200))
+        let x = document.querySelector('.page');
+       
+      var data = JSON.parse("{{jsonData|escapejs}}")
+      console.log(data);
+      
+
+      const module = "AccidentEmergency"
+      const moduleKPI = data.graphs[module].KPI;
+      
+      plotBaseGraph(data.graphs[module].interval['barline'],moduleKPI,'chart-interval',['#f2f2f6','#676795'],"Patients By Interval")
+      plotComparisonGraph(data.graphs[module].interval['barline'],moduleKPI,'chart-zone',['#f2f2f6','#676795'],"Patients By Interval")
+      plotBaseGraph_pati(data.graphs[module].interval['barline'],moduleKPI,'chart-pati-interval',['#f2f2f6','#676795'],"Patients By Interval")
+      plotBaseGraph_Doctor(data.graphs[module].interval['barline'],moduleKPI,'chart-doctor',['#f2f2f6','#676795'],"Patients By Interval")
+
+
+function plotBaseGraph(data,kpiValue,chartId,color,title,nullSeries,distributed,trim=false){
+      
+
+           let d = JSON.parse("{{jsonData|escapejs}}")       
+            var xLabels = d.graphs.AccidentEmergency.triage.comparison_1.x;
+            var y =  d.graphs.AccidentEmergency.triage.comparison_1.y;
+            let secoundsData = [y[1].data.map((ele)=>(
+              timeConverter(ele)
+            ))]
+
+            console.log("secoundsData",secoundsData);
+            
+            if(x !== '' && y !== ''){
+              var options = {
+                series: [
+                  {
+                    name: y[3].name,
+                    type: y[3].type,
+                    data: y[3].data
+                  },
+                  {
+                    name: y[2].name,
+                    type: y[2].type,
+                    data: y[2].data
+                  },
+                  {
+                    name: y[1].name,
+                    type: y[1].type,
+                    data: y[1].data
+                  },
+                  {
+                  name: y[0].name,
+                  type: y[0].type,
+                  data: y[0].data
+                },
+            ],
+            
+              chart: {
+              height: 230,
+              type: 'line',
+              stacked: false,
+            },
+            
+              stroke: {
+                width: [1, 3],
+                curve: 'smooth'
+
+              },
+              plotOptions: {
+                bar: {
+                  borderRadius: 10,
+                  dataLabels: {
+                    total: {
+                      enabled: false,
+                      style: {
+                        fontSize: '13px',
+                        fontWeight: 900
+                      }
+                    }
+                  }
+                },
+              },
+              dataLabels: {
+                enabled: true,
+              },
+              xaxis: {
+              type: 'lable', // set the x-axis type to "category"
+              categories: xLabels,
+              
+            },
+              yaxis: {
+                labels: {
+                  show: false
+                }
+            },
+            annotations: {
+              yaxis: [{
+                y: 50, // KPI value
+                strokeDashArray: 0,
+                borderColor: '#775DD0',
+                label: {
+                  borderColor: '#775DD0',
+                  style: {
+                    fontSize: '14px',
+                    color: '#fff',
+                    background: '#775DD0'
+                  },
+                  text: 'KPI: 01:00',
+                  position: 'right', // KPI label
+                  offsetY: -15, // position the label at the top of the annotation
+                  offsetX: 2, // position the label to the right of the annotation
+                }
+              }],
+            },
+          };
+
+        var chart = new ApexCharts(document.querySelector("#chart-interval"), options);
+        chart.render();
+      
+      }
+}
+
+
+function plotComparisonGraph(data,kpiValue,chartId,color,title,nullSeries,distributed,trim=false){
+ 
+           let d = JSON.parse("{{jsonData|escapejs}}")       
+            var xLabels = d.graphs.AccidentEmergency.Zone.barline_1.bar.x;
+            var y = d.graphs.AccidentEmergency.Zone.barline_1.bar.y;
+
+        
+            if(x !== '' && y !== ''){
+              var options = {
+                series: [
+                  {
+                    name: y[1].name,
+                    type: y[1].type,
+                    data: y[1].data
+                  },
+                  {
+                name: y[0].name,
+                type: y[0].type,
+                data: y[0].data
+              },
+            ],
+        
+              chart: {
+              height: 230,
+              type: 'line',
+              stacked: false,
+            },
+            
+              stroke: {
+                width: [1, 3],
+                curve: 'smooth'
+
+              },
+              plotOptions: {
+                bar: {
+                  borderRadius: 10,
+                  dataLabels: {
+                    total: {
+                      enabled: false,
+                      style: {
+                        fontSize: '13px',
+                        fontWeight: 900,
+                      }
+                    }
+                  }
+                },
+              },
+              dataLabels: {
+                enabled: true,
+              },
+              xaxis: {
+              type: 'lable',
+              categories: xLabels,
+              
+            },
+              yaxis: {
+                labels: {
+                  show: false
+                }
+            },
+            
+            annotations: {
+              yaxis: [{
+                y: 50, 
+                strokeDashArray: 0,
+                borderColor: '#775DD0',
+                label: {
+                  borderColor: '#775DD0',
+                  style: {
+                    fontSize: '14px',
+                    color: '#fff',
+                    background: '#775DD0'
+                  },
+                  text: `KPI: 01:00`,
+                  position: 'right', 
+                  offsetY: -15, 
+                  offsetX: 2, 
+                }
+              }]
+            },
+          };
+
+        var chart = new ApexCharts(document.querySelector("#chart-zone"), options);
+        chart.render();
+      
+      }
+}
+
+function plotBaseGraph_pati(data,kpiValue,chartId,color,title,nullSeries,distributed,trim=false){
+     
+           let d = JSON.parse("{{jsonData|escapejs}}")       
+            var xLabels = d.graphs.AccidentEmergency.interval.barline_1.x;
+            var y =  d.graphs.AccidentEmergency.interval.barline_1.y;
+
+       
+            if(x !== '' && y !== ''){
+              var options = {
+                series: [
+                  {
+                    name: y[1].name,
+                    type: y[1].type,
+                    data: y[1].data
+                  },
+                  {
+                name: y[0].name,
+                type: y[0].type,
+                data: y[0].data
+              },
+            ],
+            
+              chart: {
+              height: 230,
+              type: 'line',
+              stacked: false,
+            },
+            
+              stroke: {
+                width: [1, 3],
+                curve: 'smooth'
+
+              },
+              plotOptions: {
+                bar: {
+                  borderRadius: 10,
+                  dataLabels: {
+                    total: {
+                      enabled: false,
+                      style: {
+                        fontSize: '13px',
+                        fontWeight: 900
+                      }
+                    }
+                  }
+                },
+              },
+              dataLabels: {
+                enabled: true,
+              },
+              xaxis: {
+              type: 'lable', 
+              categories: xLabels,
+              
+            },
+              yaxis: {
+                labels: {
+                  show: false
+                }
+            },
+            annotations: {
+              yaxis: [{
+                y: 50, 
+                strokeDashArray: 0,
+                borderColor: '#775DD0',
+                label: {
+                  borderColor: '#775DD0',
+                  style: {
+                    fontSize: '14px',
+                    color: '#fff',
+                    background: '#775DD0'
+                  },
+                  text: `KPI: 01:00`,
+                  position: 'right', 
+                  offsetY: -15, 
+                  offsetX: 2, 
+                }
+              }]
+            },
+          };
+
+        var chart = new ApexCharts(document.querySelector("#chart-pati-interval"), options);
+        chart.render();
+      
+      }
+}
+
+function plotBaseGraph_Doctor(data,kpiValue,chartId,color,title,nullSeries,distributed,trim=false){
+
+           let d = JSON.parse("{{jsonData|escapejs}}")       
+            var xLabels = d.graphs.AccidentEmergency.Doctor.barline_1.x;
+            var y = d.graphs.AccidentEmergency.Doctor.barline_1.y;
+
+     
+            if(x !== '' && y !== ''){
+              var options = {
+                series: [
+                  {
+                    name: y[1].name,
+                    type: y[1].type,
+                    data: y[1].data
+                  },
+                  {
+                name: y[0].name,
+                type: y[0].type,
+                data: y[0].data
+              },
+            ],
+            
+              chart: {
+              height: 230,
+              type: 'line',
+              stacked: false,
+            },
+            
+              stroke: {
+                width: [1, 3],
+                curve: 'smooth'
+
+              },
+              plotOptions: {
+                bar: {
+                  borderRadius: 10,
+                  dataLabels: {
+                    total: {
+                      enabled: false,
+                      style: {
+                        fontSize: '13px',
+                        fontWeight: 900
+                      }
+                    }
+                  }
+                },
+              },
+              dataLabels: {
+                enabled: true,
+              },
+              xaxis: {
+              type: 'lable', 
+              categories: xLabels,
+              
+            },
+              yaxis: {
+                labels: {
+                  show: false
+                }
+            },
+            annotations: {
+              yaxis: [{
+                y: 50, // KPI value
+                strokeDashArray: 0,
+                borderColor: '#775DD0',
+                label: {
+                  borderColor: '#775DD0',
+                  style: {
+                    fontSize: '14px',
+                    color: '#fff',
+                    background: '#775DD0'
+                  },
+                  text: 'KPI: 01:00',
+                  position: 'right', 
+                  offsetY: -15, 
+                  offsetX: 2, 
+                }
+              }]
+            },
+          };
+
+        var chart = new ApexCharts(document.querySelector("#chart-doctor"), options);
+        chart.render();
+      
+      }
+}
+
+
+
+      var chart = new ApexCharts(
+        document.querySelector("#chart-interval"),
+        options
+      );
+      chart.render();
+
+      var chartZone = new ApexCharts(
+        document.querySelector("#chart-zone"),
+        options
+      );
+      chartZone.render();
+      var chartPatiInterval = new ApexCharts(
+        document.querySelector("#chart-pati-interval"),
+        options
+      );
+      chartPatiInterval.render();
+      var chartDoctor = new ApexCharts(
+        document.querySelector("#chart-doctor"),
+        options
+      );
+      chartDoctor.render();
+    </script>
+  </body>
+</html>

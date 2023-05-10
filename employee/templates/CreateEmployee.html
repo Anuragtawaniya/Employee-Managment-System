@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Create Employees
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+
+  <form action="/create" class="form" method="post">
+    {% csrf_token %}
+    <h2 class="heading">Create Employee</h2>
+{{form.as_p}}
+
+
+    <button type="submit" class="btn">Submit</button>
+   
+
+
+
+  </form>
+</div>
+{% endblock %}

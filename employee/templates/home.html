@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+<div class="flex home">
+<div class="emp-count">
+    <h1 class="heading">Total Employee : {{totalEmp}}</h1>
+</div>
+<div class="emp-detail">
+    <h4 class="heading">Employees on Leave,Today</h4>
+{% for leave in is_leave %}
+  <p>{{leave}}</p>
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create Employees
+{% endblock %}
+
+{% block body %}
+
+
+<div class="table-data">
+  <a href="/create"><button class="btn">Add Button</button></a>
+  <table class="show" class="table" id="myTable">
+  <tr>
+    <th>Id</th>
+  <th>Name</th>
+  <th>DOB</th>
+  <th>DOJ</th>
+  <th>Post</th>
+  <th>Address</th>
+  <th>City</th>
+  <th>Country</th>
+  <th>ZipCode</th>
+  <th>State</th>
+  <th>LeaveCount</th>
+  <th>View</th>
+  <th>Edit</th>
+  <th>Active/Inactive</th>
+  </tr>
+
+  {% for emp in employee %}
+<tr>
+  <td>{{emp.id}}</td>
+  <td>{{emp.name}}</td>
+  <td>{{emp.dateOfBirth}}</td>
+  <td>{{emp.dateOfJoin}}</td>
+  <td>{{emp.post}}</td>
+  <td>{{emp.address}}</td>
+  <td>{{emp.city}}</td>
+  <td>{{emp.country}}</td>
+  <td>{{emp.zipCode}}</td>
+  <td>{{emp.state}}</td>
+  <td>{{emp.leaveCount}}</td>
+  <td><a href="{% url 'views' emp.id %}" id="view" class="btn btn-primary">View</a></td>
+  <td><a href="{% url 'editEmployee' emp.id %}" id="edit" class="btn btn-primary">Edit</a></td>
+
+  <td>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="emp_id", value={{emp.id}}>
+      {% if emp.is_active %}
+      <input type="hidden" name="is_active", value="false">
+      <button type="submit" class="btn btn-primary">Inactive</button>
+      {% else %}
+    <input type="hidden" name="is_active", value="true">
+    <button type="submit" class="btn btn-primary">Active</button>
+    {% endif %}
+  </form>
+</td>
+
+</tr>
+  {% endfor %}
+
+  </table>
+        </div>
+
+{% endblock %}

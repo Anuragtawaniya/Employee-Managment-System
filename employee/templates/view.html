@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create Employees
+{% endblock %}
+
+{% block body %}
+
+{% load static %}
+
+<div class="view-detail">
+<div>
+    <img src="{% static 'user.png' %}" width="300">
+    <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="emp_id", value={{emp.id}}>
+    <input type="hidden" name="on_leave", value="1">
+    <button type="submit" name="leave" class="btn btn-primary">Mark A Leave</button>
+</form>
+</div>
+<div class="employee-view">
+<h4>Employee Name : {{employee.name}}</h4>
+<h4>date Of Birth : {{employee.dateOfBirth}}</h4>
+<h4>date Of Join : {{employee.dateOfJoin}}</h4>
+<h4>Post : {{employee.post}}</h4>
+<h4>Address : {{employee.address}}</h4>
+<h4>City : {{employee.city}}</h4>
+<h4>Country : {{employee.country}}</h4>
+<h4>zipCode : {{employee.zipCode}}</h4>
+<h4>Country : {{employee.zipCode}}</h4>
+<h4>Total Leaves : {{employee.leaveCount}}</h4>
+<h4>Leaves Status : {{employee.on_leave}}</h4>
+<h4>Active Status : {{employee.is_active}}</h4>
+</div>
+</div>
+
+{{key_metrics.total.count}}
+
+{% endblock %}
